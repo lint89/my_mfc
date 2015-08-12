@@ -26,8 +26,12 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 *.vssscc
+<<<<<<< HEAD
 $tf*/
 
 *.ipch
 *.sdf
 *.opensdf
+=======
+$tf*/
+>>>>>>> af624aeb44cfe91a6917cf5c582b4ad227d0745b

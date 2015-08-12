@@ -29,3 +29,5 @@ _ReSharper*/
 $tf*/
 
 *.ipch
+*.sdf
+*.opensdf

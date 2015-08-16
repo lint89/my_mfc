@@ -44,6 +44,11 @@ public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 private:
 	CBitmap bitmap;
+	CString m_strLine;
+	CPoint m_ptOrigin;
+public:
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // CH05_TextView.cpp 中的调试版本

@@ -28,7 +28,7 @@ LANGUAGE LANG_CHINESE, SUBLANG_NEUTRAL
 // Dialog
 //
 
-IDD_DLG_SETTING DIALOGEX 0, 0, 309, 178
+IDD_DLG_SETTING DIALOGEX 0, 0, 315, 210
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Setting"
 FONT 8, "宋体", 400, 0, 0x86
@@ -37,10 +37,12 @@ BEGIN
     PUSHBUTTON      "取消",IDCANCEL,233,47,50,14
     LTEXT           "线宽",IDC_STATIC,30,23,23,14
     EDITTEXT        IDC_LINE_WIDTH,61,20,53,14,ES_AUTOHSCROLL
-    GROUPBOX        "线型",IDC_LINE_STYLE,30,51,84,92,BS_NOTIFY
-    CONTROL         "实线",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,47,76,31,10
-    CONTROL         "虚线",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,47,95,31,10
-    CONTROL         "点线",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,47,114,31,10
+    GROUPBOX        "线型",IDC_LINE_STYLE,30,51,84,76,BS_NOTIFY
+    CONTROL         "实线",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,47,67,31,10
+    CONTROL         "虚线",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,47,86,31,10
+    CONTROL         "点线",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,47,105,31,10
+    GROUPBOX        "示例",IDC_SAMPLE,30,136,84,45,BS_NOTIFY
+    LTEXT           "程序员",IDC_TEXT,220,97,68,46
 END
 
 
@@ -55,9 +57,9 @@ BEGIN
     IDD_DLG_SETTING, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 302
+        RIGHTMARGIN, 308
         TOPMARGIN, 7
-        BOTTOMMARGIN, 171
+        BOTTOMMARGIN, 203
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -72,6 +74,42 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 CH10_Graphic"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "CH10_Graphic，1.0 版",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2015",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -188,23 +226,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Dialog
-//
-
-IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "关于 CH10_Graphic"
-FONT 9, "MS Shell Dlg", 0, 0, 0x1
-BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
-    LTEXT           "CH10_Graphic，1.0 版",IDC_STATIC,42,14,114,8,SS_NOPREFIX
-    LTEXT           "Copyright (C) 2015",IDC_STATIC,42,26,114,8
-    DEFPUSHBUTTON   "确定",IDOK,113,41,50,14,WS_GROUP
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Version
 //
 
@@ -240,25 +261,6 @@ BEGIN
         VALUE "Translation", 0x804, 1200
     END
 END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 163
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 55
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -396,6 +398,13 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP                  "res\\background.bmp"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////

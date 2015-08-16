@@ -21,4 +21,11 @@ protected:
 public:
 	UINT m_nLineWidth;
 	int m_nLineStyle;
+	afx_msg void OnChangeLineWidth();
+	afx_msg void OnClickedRadio1();
+	afx_msg void OnPaint();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+private:
+	CBrush m_brush;
+	CFont m_font;
 };

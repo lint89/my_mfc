@@ -7,11 +7,14 @@
 #define IDR_MAINFRAME                   128
 #define IDR_CH10_GraphicTYPE            130
 #define IDD_DLG_SETTING                 310
+#define IDB_BITMAP1                     311
 #define IDC_LINE_WIDTH                  1001
 #define IDC_LINE_STYLE                  1002
 #define IDC_RADIO1                      1003
 #define IDC_RADIO2                      1004
 #define IDC_RADIO3                      1005
+#define IDC_SAMPLE                      1006
+#define IDC_TEXT                        1007
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -31,9 +34,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        311
+#define _APS_NEXT_RESOURCE_VALUE        312
 #define _APS_NEXT_COMMAND_VALUE         32785
-#define _APS_NEXT_CONTROL_VALUE         1004
+#define _APS_NEXT_CONTROL_VALUE         1008
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

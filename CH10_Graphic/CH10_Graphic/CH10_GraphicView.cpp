@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(CCH10_GraphicView, CView)
 	ON_COMMAND(IDM_SETTING, &CCH10_GraphicView::OnSetting)
 	ON_COMMAND(IDM_COLOR, &CCH10_GraphicView::OnColor)
 	ON_COMMAND(IDM_FONT, &CCH10_GraphicView::OnFont)
+	ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 // CCH10_GraphicView 构造/析构
@@ -250,4 +251,30 @@ void CCH10_GraphicView::OnFont()
 	}
 
 	Invalidate();
+}
+
+
+BOOL CCH10_GraphicView::OnEraseBkgnd(CDC* pDC)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CBitmap bitmap;
+	bitmap.LoadBitmapW(IDB_BITMAP1);
+
+	BITMAP bmp;
+	bitmap.GetBitmap(&bmp);
+
+	CDC dcCompatible;
+	dcCompatible.CreateCompatibleDC(pDC);
+
+	dcCompatible.SelectObject(&bitmap);
+
+	CRect rect;
+	GetClientRect(&rect);
+	//pDC->BitBlt(0, 0, rect.Width(), rect.Height(), &dcCompatible, 
+	//	0, 0, SRCCOPY);
+	pDC->StretchBlt(0, 0, rect.Width(), rect.Height(), &dcCompatible,
+		0, 0, bmp.bmWidth, bmp.bmHeight, SRCCOPY);
+
+	//return CView::OnEraseBkgnd(pDC);
+	return TRUE;
 }

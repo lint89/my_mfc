@@ -28,6 +28,8 @@ BEGIN_MESSAGE_MAP(CCH05_TextView, CView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_CREATE()
+	ON_WM_LBUTTONDOWN()
+	ON_WM_CHAR()
 END_MESSAGE_MAP()
 
 // CCH05_TextView 构造/析构
@@ -36,6 +38,8 @@ CCH05_TextView::CCH05_TextView()
 {
 	// TODO: 在此处添加构造代码
 
+	m_strLine = _T("");
+	m_ptOrigin = 0;
 }
 
 CCH05_TextView::~CCH05_TextView()
@@ -62,8 +66,8 @@ void CCH05_TextView::OnDraw(CDC* pDC)
 
 	// TODO: 在此处为本机数据添加绘制代码
 	//CString str(_T("VC++ 深入编程"));
-	////CDC* pDC;
-	////pDC = GetDC();
+	////CString str;
+	////str = _T("VC++ 深入编程");
 	//pDC->TextOutW(50, 50, str);
 
 	/* 使用字符串资源 */
@@ -71,6 +75,16 @@ void CCH05_TextView::OnDraw(CDC* pDC)
 	//str.LoadStringW(IDS_STRINGVC);
 	//pDC->TextOutW(0, 200, str);
 
+	/* 路径 */
+	CString str;
+	//CSize sz = pDC->GetTextExtent(str);
+	str.LoadStringW(IDS_STRINGVC);
+	CSize sz = pDC->GetTextExtent(str);
+	pDC->TextOutW(50, 50, str);
+
+	pDC->BeginPath();
+	pDC->Rectangle(50, 50, 50 + sz.cx, 50 + sz.cy);
+	pDC->EndPath();
 }
 
 
@@ -124,11 +138,12 @@ int CCH05_TextView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// TODO:  在此添加您专用的创建代码
 	/* 创建文本插入符 */
+	//CreateSolidCaret(20, 100);
+	//ShowCaret();
+
 	//CClientDC dc(this);
 	//TEXTMETRIC tm;
 	//dc.GetTextMetrics(&tm);
-
-	////CreateSolidCaret(20, 100);
 	//CreateSolidCaret(tm.tmAveCharWidth/8, tm.tmHeight);
 	//ShowCaret();
 
@@ -139,4 +154,50 @@ int CCH05_TextView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	ShowCaret();
 
 	return 0;
+}
+
+
+void CCH05_TextView::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	SetCaretPos(point);
+	m_strLine.Empty();
+	m_ptOrigin = point;
+
+	CView::OnLButtonDown(nFlags, point);
+}
+
+
+void CCH05_TextView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CClientDC dc(this);
+	TEXTMETRIC tm;
+	dc.GetTextMetrics(&tm);
+	if (0x0d == nChar)
+	{
+		m_strLine.Empty();
+		m_ptOrigin.y += tm.tmHeight;
+	}
+	else if (0x08 == nChar)
+	{
+		COLORREF clr = dc.SetTextColor(dc.GetBkColor());
+		dc.TextOutW(m_ptOrigin.x, m_ptOrigin.y, m_strLine);
+		m_strLine = m_strLine.Left(m_strLine.GetLength() -1);
+		dc.SetTextColor(clr);
+	}
+	else
+	{
+		m_strLine += (UCHAR)nChar;
+	}
+
+	dc.TextOutW(m_ptOrigin.x, m_ptOrigin.y, m_strLine);
+
+	CSize sz = dc.GetTextExtent(m_strLine);
+	CPoint pt;
+	pt.x = m_ptOrigin.x + sz.cx;
+	pt.y = m_ptOrigin.y;
+	SetCaretPos(pt);
+
+	CView::OnChar(nChar, nRepCnt, nFlags);
 }

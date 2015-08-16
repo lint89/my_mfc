@@ -66,6 +66,8 @@ public:
 private:
 	CFont m_font;
 	CString m_strFontName;
+public:
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 
 #ifndef _DEBUG  // CH10_GraphicView.cpp 中的调试版本
